@@ -48,13 +48,14 @@ public class PedidoAdicionalDAO extends BaseDAO {
 	
 	public List<AdicionalVO> listarAdicionaisPorPizza(PedidoVO voPedido, PizzaVO voPizza) {
 		conn = getConnection();
-		String sql = "select * from pedido_pizza_adicional, pizzas where pedido_pizza_adicional.id_pedido = ? and pizzas.id = pedido_pizza_adicional.id_pizza and pizzas.id = pedido_pizza_adicional.id_adicional";
+		String sql = "select * from pedido_pizza_adicional, adicionais where pedido_pizza_adicional.id_pedido = ? and pedido_pizza_adicional.id_pizza = ? and adicionais.id = pedido_pizza_adicional.id_adicional";
 		PreparedStatement ptst;
 		ResultSet rs;
 		List<AdicionalVO> adicionais = new ArrayList<AdicionalVO>(); 
 		try {
 			ptst = conn.prepareStatement(sql);
 			ptst.setLong(1, voPedido.getId());
+			ptst.setLong(2, voPizza.getId());
 			rs = ptst.executeQuery();
 			while(rs.next()) {
 				AdicionalVO vo = new AdicionalVO();

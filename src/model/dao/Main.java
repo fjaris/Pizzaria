@@ -48,7 +48,13 @@ public class Main {
 		vo2.setCliente(vo);
 		vo2.setId(2);
 		
-		daoteste8.inserir(adicional, voPizza, vo2);
+		List<AdicionalVO> adicionais = daoteste8.listarAdicionaisPorPizza(vo2, voPizza);
+		for(AdicionalVO voUsuario22: adicionais) {
+		System.out.println(voUsuario22.getId() + " " + voUsuario22.getId());
+		}
+		
+		daoteste8.listarAdicionaisPorPizza(vo2, voPizza);
+
 		
 		
 //		List<AdicionalVO> adicionais = daoteste8.listarAdicionaisPorPizza(vo2, voPizza);
