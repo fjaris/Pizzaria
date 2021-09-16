@@ -3,8 +3,7 @@ package model.vo;
 public class PedidoVO {
     private long id;
     private ClienteVO cliente;
-    private PizzaVO[] pizzas;
-    private AdicionalVO[] adicionais;
+    private PizzaVOExtends[] pizzas;
     private Tamanho tamanho;
     private Estado estado;
     private float valor;
@@ -31,11 +30,11 @@ public class PedidoVO {
         }
     }
 
-    public PizzaVO[] getPizzas() {
+    public PizzaVOExtends[] getPizzas() {
         return pizzas;
     }
 
-    public void setPizzas(PizzaVO[] pizzas) {
+    public void setPizzas(PizzaVOExtends[] pizzas) {
         if (pizzas != null && pizzas.length > 0) {
             boolean isValid = true;
             for (int i = 0; i < pizzas.length; i++) {
@@ -51,27 +50,6 @@ public class PedidoVO {
             }
         } else {
             System.out.println("O vetor é nulo ou vazio");
-        }
-    }
-
-    public AdicionalVO[] getAdicional() {
-        return adicionais;
-    }
-
-    public void setAdicional(AdicionalVO[] adicionais) {
-        if (adicionais != null) {
-            boolean isValid = true;
-            for (int i = 0; i < adicionais.length; i++) {
-                if (adicionais[i] == null) {
-                    isValid = false;
-                    break;
-                }
-            }
-            if (isValid) {
-                this.adicionais = adicionais;
-            } else {
-                System.out.println("O valor do adicional é inválido");
-            }
         }
     }
 

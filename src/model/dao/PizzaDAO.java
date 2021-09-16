@@ -1,5 +1,8 @@
 package model.dao;
 
+import model.vo.AdicionalVO;
+import model.vo.ClienteVO;
+import model.vo.PedidoVO;
 import model.vo.PizzaVO;
 
 import java.util.ArrayList;
@@ -79,6 +82,33 @@ public class PizzaDAO extends BaseDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public List<PizzaVO> BuscarPizzaPorTipo(PizzaVO vo) {
+		conn = getConnection();
+		String sql = "select * from pizzas where tipo like ?";
+		PreparedStatement ptst;
+		ResultSet rs;
+		List<PizzaVO> pizzas = new ArrayList<PizzaVO>(); 
+		try {
+			ptst = conn.prepareStatement(sql);
+			ptst.setString(1,"%" + vo.getTipo() + "%");
+			rs = ptst.executeQuery();
+			while(rs.next()) {
+				PizzaVO voPizza = new PizzaVO(); 
+				voPizza.setId(rs.getLong("id"));
+				voPizza.setTipo(rs.getString("tipo"));
+				voPizza.setValor(rs.getFloat("valor"));
+				pizzas.add(voPizza);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return pizzas;
+	}
 }
+
+
+
 
 

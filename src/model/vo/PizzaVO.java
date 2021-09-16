@@ -41,6 +41,10 @@ public class PizzaVO {
 			this.valor = valor;
 		}
 	}
+	
+	public String toString() {
+		return "id: " + getId() + " tipo: " + getTipo() + " valor: " + getValor();
+	}
 }	
 	
 	

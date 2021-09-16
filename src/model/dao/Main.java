@@ -8,6 +8,7 @@ import model.vo.Estado;
 import model.vo.EstoqueVO;
 import model.vo.PedidoVO;
 import model.vo.PizzaVO;
+import model.vo.PizzaVOExtends;
 import model.vo.Tamanho;
 import model.vo.UsuarioVO;
 
@@ -25,35 +26,68 @@ public class Main {
 		PedidoPizzaDAO daoteste7 = new PedidoPizzaDAO();
 		PedidoAdicionalDAO daoteste8 = new PedidoAdicionalDAO();
 		
-		
-		AdicionalVO adicional = new AdicionalVO();
-		adicional.setId(2);
-		adicional.setNome("Calabresa");
-		adicional.setValor(6);
-		
-		
-		PizzaVO voPizza = new PizzaVO();
-		voPizza.setTipo("5 Queijos");
-		voPizza.setValor(34);
-		voPizza.setId(3);
-		
-		ClienteVO vo = new ClienteVO();
-		vo.setNome("jujuju");
-		vo.setCpf("713.444.444-44");
-		vo.setEndereço("jajaj");
-		vo.setId(2);
+		PizzaVOExtends vo4 = new PizzaVOExtends();
+		vo4.setId(2);
+		vo4.setTipo("calabresa");
+		vo4.setValor(40);
 		
 		
-		PedidoVO vo2 = new PedidoVO();
-		vo2.setCliente(vo);
+		AdicionalVO vo2 = new AdicionalVO();
 		vo2.setId(2);
+		vo2.setNome("carne");
+		vo2.setValor(20);
+	
+		ClienteVO vo3 = new ClienteVO();
+		vo3.setId(2);
+		vo3.setNome("Junior");
+		vo3.setEndereço("Rua maria de lourdes de medeiros");
+		vo3.setCpf("713.423.434-76");
 		
-		List<AdicionalVO> adicionais = daoteste8.listarAdicionaisPorPizza(vo2, voPizza);
-		for(AdicionalVO voUsuario22: adicionais) {
-		System.out.println(voUsuario22.getId() + " " + voUsuario22.getId());
-		}
 		
-		daoteste8.listarAdicionaisPorPizza(vo2, voPizza);
+		PizzaVOExtends[] vo5 = new PizzaVOExtends[1];
+		vo5[0] = vo4;
+		
+		PedidoVO vo = new PedidoVO();
+		vo.setId(2);
+		vo.setPizzas(vo5);
+		vo.setCliente(vo3);
+		vo.setEstado(Estado.PEDIDO_REALIZADO);
+		vo.setTamanho(Tamanho.G);
+		vo.setValor(40);
+		
+		
+		daoteste7.ListarPizzaPorPedido(vo).forEach(vo6->System.out.println(vo6));
+		
+		
+		
+//		AdicionalVO adicional = new AdicionalVO();
+//		adicional.setId(2);
+//		adicional.setNome("Calabresa");
+//		adicional.setValor(6);
+//		
+//		
+//		PizzaVO voPizza = new PizzaVO();
+//		voPizza.setTipo("5 Queijos");
+//		voPizza.setValor(34);
+//		voPizza.setId(3);
+//		
+//		ClienteVO vo = new ClienteVO();
+//		vo.setNome("jujuju");
+//		vo.setCpf("713.444.444-44");
+//		vo.setEndereço("jajaj");
+//		vo.setId(2);
+//		
+//		
+//		PedidoVO vo2 = new PedidoVO();
+//		vo2.setCliente(vo);
+//		vo2.setId(2);
+//		
+//		List<AdicionalVO> adicionais = daoteste8.listarAdicionaisPorPizza(vo2, voPizza);
+//		for(AdicionalVO voUsuario22: adicionais) {
+//		System.out.println(voUsuario22.getId() + " " + voUsuario22.getId());
+//		}
+//		
+//		daoteste8.listarAdicionaisPorPizza(vo2, voPizza);
 
 		
 		

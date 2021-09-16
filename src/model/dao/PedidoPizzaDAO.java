@@ -1,7 +1,9 @@
 package model.dao;
 
+import model.vo.AdicionalVO;
 import model.vo.PedidoVO;
 import model.vo.PizzaVO;
+import model.vo.PizzaVOExtends;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class PedidoPizzaDAO extends BaseDAO {
-
+	private AdicionalDAO adicionalDAO = new AdicionalDAO();
 	
 	public void inserir(PedidoVO voPedido, PizzaVO voPizza) {
 		conn = getConnection();
@@ -43,22 +45,26 @@ public class PedidoPizzaDAO extends BaseDAO {
 		}
 	}
 	
-	public List<PizzaVO> listarPizzasPorPedido(PedidoVO voPedido) {
+	public List<PizzaVOExtends> ListarPizzaPorPedido(PedidoVO vo) {
 		conn = getConnection();
-		String sql = "select * from pedido_pizza, pizzas where pedido_pizza.id_pedido = ? and pizzas.id = pedido_pizza.id_pizza";
+		String sql = "select * from pizzas, pedidos, pedido_pizza where pedidos.id = ? and pedido_pizza.id_pedido = pedidos.id and pizzas.id = pedido_pizza.id_pizza";
 		PreparedStatement ptst;
 		ResultSet rs;
-		List<PizzaVO> pizzas = new ArrayList<PizzaVO>(); 
+		List<PizzaVOExtends> pizzas = new ArrayList<PizzaVOExtends>(); 
 		try {
 			ptst = conn.prepareStatement(sql);
-			ptst.setLong(1, voPedido.getId());
+			ptst.setLong(1, vo.getId());
 			rs = ptst.executeQuery();
 			while(rs.next()) {
-				PizzaVO vo = new PizzaVO();
-				vo.setId(rs.getLong("pizzas.id"));
-				vo.setTipo(rs.getString("pizzas.tipo"));
-				vo.setValor(rs.getFloat("pizzas.valor"));
-				pizzas.add(vo);
+				PizzaVOExtends voPizza = new PizzaVOExtends(); 
+				voPizza.setId(rs.getLong("id"));
+				voPizza.setTipo(rs.getString("tipo"));
+				voPizza.setValor(rs.getFloat("valor"));
+				List<AdicionalVO> adicionais = adicionalDAO.listarPorPizzasEmPedido(vo, voPizza);
+				AdicionalVO[] adicionaisPizzas = new AdicionalVO[adicionais.size()];
+				adicionais.toArray(adicionaisPizzas);
+				voPizza.setAdicionais(adicionaisPizzas);
+				pizzas.add(voPizza);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

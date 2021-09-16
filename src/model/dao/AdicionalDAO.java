@@ -1,6 +1,8 @@
 package model.dao;
 
 import model.vo.AdicionalVO;
+import model.vo.PedidoVO;
+import model.vo.PizzaVO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,4 +81,52 @@ public class AdicionalDAO extends BaseDAO {
 			e.printStackTrace();
 		}
 	}
+	public List<AdicionalVO> buscar(AdicionalVO vo) {
+		conn = getConnection();
+		String sql = "select * from adicionais where nome like ?";
+		PreparedStatement ptst;
+		ResultSet rs;
+		List<AdicionalVO> adicionais = new ArrayList<AdicionalVO>(); 
+		try {
+			ptst = conn.prepareStatement(sql);
+			ptst.setString(1,"%" + vo.getNome() + "%");
+			rs = ptst.executeQuery();
+			while(rs.next()) {
+				AdicionalVO voAdicional = new AdicionalVO(); 
+				voAdicional.setId(rs.getLong("id"));
+				voAdicional.setNome(rs.getString("nome"));
+				voAdicional.setValor(rs.getFloat("valor"));
+				adicionais.add(voAdicional);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return adicionais;
+	}
+	
+	public List<AdicionalVO> listarPorPizzasEmPedido(PedidoVO voPedido, PizzaVO voPizza) {
+		conn = getConnection();
+		String sql = "select * from adicionais, pedido_pizza_adicional where pedido_pizza_adicional.id_pedido = ? and adicionais.id = pedido_pizza_adicional.id_adicional";
+		PreparedStatement ptst;
+		ResultSet rs;
+		List<AdicionalVO> adicionais = new ArrayList<AdicionalVO>(); 
+		try {
+			ptst = conn.prepareStatement(sql);
+			ptst.setLong(1, voPedido.getId());
+			rs = ptst.executeQuery();
+			while(rs.next()) {
+				AdicionalVO vo = new AdicionalVO();
+				vo.setId(rs.getLong("id"));
+				vo.setNome(rs.getString("nome"));
+				vo.setValor(rs.getFloat("valor"));
+				adicionais.add(vo);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return adicionais;
+	}
 }
+

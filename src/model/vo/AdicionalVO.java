@@ -41,4 +41,7 @@ public class AdicionalVO {
 			this.valor = valor;
 		}
 	}
+	public String toString() {
+		return "id: " + getId() + " nome: " + getNome() + " valor: " + getValor();
+	}
 }
