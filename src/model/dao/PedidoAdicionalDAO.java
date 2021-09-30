@@ -9,9 +9,9 @@ import java.util.List;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-public class PedidoAdicionalDAO extends BaseDAO {
+
+public class PedidoAdicionalDAO extends BaseDAO  {
 
 	
 	public void inserir(AdicionalVO voAdicional, PizzaVO voPizza, PedidoVO voPedido) {
