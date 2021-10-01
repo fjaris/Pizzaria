@@ -1,8 +1,5 @@
 package model.dao;
 
-import model.vo.AdicionalVO;
-import model.vo.ClienteVO;
-import model.vo.PedidoVO;
 import model.vo.PizzaVO;
 
 import java.util.ArrayList;
@@ -12,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class PizzaDAO extends BaseDAO {
+public class PizzaDAO extends BaseDAO implements BaseInterDAO<PizzaVO>{
 
 
 	public void inserir(PizzaVO vo) {

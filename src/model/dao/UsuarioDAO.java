@@ -1,5 +1,6 @@
 package model.dao;
 
+
 import model.vo.UsuarioVO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioDAO extends BaseDAO {
+public class UsuarioDAO extends BaseDAO implements BaseInterDAO<UsuarioVO> {
 
 	public void inserir(UsuarioVO vo) {
 		conn = getConnection();
