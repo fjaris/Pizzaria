@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class EstoqueDAO extends BaseDAO {
+public class EstoqueDAO extends BaseDAO implements BaseInterDAO<EstoqueVO> {
 	
 
 	public void inserir(EstoqueVO vo) {

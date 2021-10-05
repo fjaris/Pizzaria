@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class AdicionalDAO extends BaseDAO {
+public class AdicionalDAO extends BaseDAO implements BaseInterDAO<AdicionalVO> {
 	AdicionalVO vo;
 	
 	public void inserir(AdicionalVO vo) {

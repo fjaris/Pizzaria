@@ -1,30 +1,28 @@
 package model.dao;
 
-import java.util.List;
+
 
 import model.vo.AdicionalVO;
 import model.vo.ClienteVO;
 import model.vo.Estado;
-import model.vo.EstoqueVO;
 import model.vo.PedidoVO;
-import model.vo.PizzaVO;
 import model.vo.PizzaVOExtends;
 import model.vo.Tamanho;
-import model.vo.UsuarioVO;
+
 
 public class Main {
 
 	public static void main(String[] args) {
-		BaseDAO teste = new BaseDAO();
-		System.out.println(teste.getConnection());
-		ClienteDAO daoteste = new ClienteDAO();
-		AdicionalDAO daoteste2 = new AdicionalDAO();
-		EstoqueDAO daoteste3 = new EstoqueDAO();
-		PizzaDAO daoteste4 = new PizzaDAO();
-		UsuarioDAO daoteste5 = new UsuarioDAO();
-		PedidoDAO daoteste6 = new PedidoDAO();
-		PedidoPizzaDAO daoteste7 = new PedidoPizzaDAO();
-		PedidoAdicionalDAO daoteste8 = new PedidoAdicionalDAO();
+//		BaseDAO teste = new BaseDAO();
+//		System.out.println(teste.getConnection());
+//		ClienteDAO daoteste = new ClienteDAO();
+//		AdicionalDAO daoteste2 = new AdicionalDAO();
+//		EstoqueDAO daoteste3 = new EstoqueDAO();
+//		PizzaDAO daoteste4 = new PizzaDAO();
+//		UsuarioDAO daoteste5 = new UsuarioDAO();
+//		PedidoDAO daoteste6 = new PedidoDAO();
+//		PedidoPizzaDAO daoteste7 = new PedidoPizzaDAO();
+//		PedidoAdicionalDAO daoteste8 = new PedidoAdicionalDAO();
 		
 		PizzaVOExtends vo4 = new PizzaVOExtends();
 		vo4.setId(2);
@@ -56,7 +54,7 @@ public class Main {
 		vo.setValor(40);
 		
 		
-		daoteste7.ListarPizzaPorPedido(vo).forEach(vo6->System.out.println(vo6));
+//		daoteste7.ListarPizzaPorPedido(vo).forEach(vo6->System.out.println(vo6));
 		
 		
 		

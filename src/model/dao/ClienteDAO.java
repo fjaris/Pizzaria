@@ -9,17 +9,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ClienteDAO extends BaseDAO {
+public class ClienteDAO extends BaseDAO implements BaseInterDAO<ClienteVO> {
 	ClienteVO vo;
 	
 	public void inserir(ClienteVO vo) {
 		conn = getConnection();
-		String sql = "insert into clientes (nome, endereço, cpf) values(?,?,?)";
+		String sql = "insert into clientes (nome, endereï¿½o, cpf) values(?,?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = conn.prepareStatement(sql);
 			ptst.setString(1, vo.getNome());
-			ptst.setString(2, vo.getEndereço());
+			ptst.setString(2, vo.getEndereï¿½o());
 			ptst.setString(3, vo.getCpf());
 			ptst.execute();
 		} catch (SQLException e) {
@@ -55,7 +55,7 @@ public class ClienteDAO extends BaseDAO {
 				ClienteVO vo = new ClienteVO();
 				vo.setId(rs.getLong("id"));
 				vo.setNome(rs.getString("nome"));
-				vo.setEndereço(rs.getString("endereço"));
+				vo.setEndereï¿½o(rs.getString("endereï¿½o"));
 				vo.setCpf(rs.getString("cpf"));
 				clientes.add(vo);
 			}
@@ -68,12 +68,12 @@ public class ClienteDAO extends BaseDAO {
 	
 	public void editar(ClienteVO vo) {
 		conn = getConnection();
-		String sql = "update clientes set nome = ?, endereço = ?, cpf = ? where id = ?";
+		String sql = "update clientes set nome = ?, endereï¿½o = ?, cpf = ? where id = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = conn.prepareStatement(sql);
 			ptst.setString(1, vo.getNome());
-			ptst.setString(2, vo.getEndereço());
+			ptst.setString(2, vo.getEndereï¿½o());
 			ptst.setString(3, vo.getCpf());
 			ptst.setLong(4, vo.getId());
 			ptst.executeUpdate();
