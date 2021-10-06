@@ -9,46 +9,34 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ClienteDAO extends BaseDAO {
-	ClienteVO vo;
+public class ClienteDAO extends BaseDAO implements BaseInterDAO<ClienteVO> {
 	
-	public void inserir(ClienteVO vo) {
+	public void inserir(ClienteVO vo) throws SQLException {
 		conn = getConnection();
 		String sql = "insert into clientes (nome, endereço, cpf) values(?,?,?)";
 		PreparedStatement ptst;
-		try {
 			ptst = conn.prepareStatement(sql);
 			ptst.setString(1, vo.getNome());
 			ptst.setString(2, vo.getEndereço());
 			ptst.setString(3, vo.getCpf());
 			ptst.execute();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
-	public void remover(ClienteVO vo) {
+	public void remover(ClienteVO vo) throws SQLException {
 		conn = getConnection();
 		String sql = "delete from clientes where id = ?";
 		PreparedStatement ptst;
-		try {
 			ptst = conn.prepareStatement(sql);
 			ptst.setLong(1, vo.getId());
 			ptst.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
-	public List<ClienteVO> listar() {
+	public List<ClienteVO> listar() throws SQLException {
 		conn = getConnection();
 		String sql = "select * from clientes";
 		Statement st;
 		ResultSet rs;
 		List<ClienteVO> clientes = new ArrayList<ClienteVO>(); 
-		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
@@ -59,27 +47,18 @@ public class ClienteDAO extends BaseDAO {
 				vo.setCpf(rs.getString("cpf"));
 				clientes.add(vo);
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return clientes;
 	}
 	
-	public void editar(ClienteVO vo) {
+	public void editar(ClienteVO vo) throws SQLException {
 		conn = getConnection();
 		String sql = "update clientes set nome = ?, endereço = ?, cpf = ? where id = ?";
 		PreparedStatement ptst;
-		try {
 			ptst = conn.prepareStatement(sql);
 			ptst.setString(1, vo.getNome());
 			ptst.setString(2, vo.getEndereço());
 			ptst.setString(3, vo.getCpf());
 			ptst.setLong(4, vo.getId());
 			ptst.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }
