@@ -16,44 +16,33 @@ import java.sql.Statement;
 public class PedidoDAO extends BaseDAO implements BaseInterDAO<PedidoVO> {
 	PedidoPizzaDAO pizzadao = new PedidoPizzaDAO();
 	
-	public void inserir(PedidoVO vo) {
+	public void inserir(PedidoVO vo) throws SQLException {
 		conn = getConnection();
 		String sql = "insert into pedidos (cliente_id, tamanho, estado, valor) values(?,?,?,?)";
 		PreparedStatement ptst;
-		try {
 			ptst = conn.prepareStatement(sql);
 			ptst.setLong(1, vo.getCliente().getId());
 			ptst.setString(2, vo.getTamanho().toString());
 			ptst.setString(3, vo.getEstado().toString());
 			ptst.setFloat(4, vo.getValor());
 			ptst.execute();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
-	public void remover(PedidoVO vo) {
+	public void remover(PedidoVO vo) throws SQLException {
 		conn = getConnection();
 		String sql = "delete from pedidos where id = ?";
 		PreparedStatement ptst;
-		try {
 			ptst = conn.prepareStatement(sql);
 			ptst.setLong(1, vo.getId());
 			ptst.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
-	public List<PedidoVO> listar() {
+	public List<PedidoVO> listar() throws SQLException {
 		conn = getConnection();
 		String sql = "select * from pedidos";
 		Statement st;
 		ResultSet rs;
 		List<PedidoVO> pedidos = new ArrayList<PedidoVO>(); 
-		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
@@ -94,18 +83,13 @@ public class PedidoDAO extends BaseDAO implements BaseInterDAO<PedidoVO> {
 				vo.setPizzas(pizzasPedido);
 				pedidos.add(vo);
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return pedidos;
 	}
 	
-	public void editar(PedidoVO vo) {
+	public void editar(PedidoVO vo) throws SQLException {
 		conn = getConnection();
 		String sql = "update pedidos set cliente_id = ?, tamanho = ?, estado = ?, valor = ? where id = ?";
 		PreparedStatement ptst;
-		try {
 			ptst = conn.prepareStatement(sql);
 			ptst.setLong(1, vo.getCliente().getId());
 			ptst.setString(2, vo.getTamanho().toString());
@@ -113,20 +97,15 @@ public class PedidoDAO extends BaseDAO implements BaseInterDAO<PedidoVO> {
 			ptst.setFloat(4, vo.getValor());
 			ptst.setLong(5, vo.getId());
 			ptst.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
-	public List<PedidoVO> BuscarPedido(ClienteVO vo) {
+	public List<PedidoVO> BuscarPedido(ClienteVO vo) throws SQLException {
 		conn = getConnection();
 		String sql = "select * from pedidos, clientes where clientes.nome like ? and pedidos.cliente_id = clientes.id";
 		PreparedStatement ptst;
 		ResultSet rs;
 		List<PedidoVO> pedidos = new ArrayList<PedidoVO>();
 		ClienteVO cliente = new ClienteVO();
-		try {
 			ptst = conn.prepareStatement(sql);
 			ptst.setString(1,"%" + cliente.getNome() + "%");
 			rs = ptst.executeQuery();
@@ -173,20 +152,15 @@ public class PedidoDAO extends BaseDAO implements BaseInterDAO<PedidoVO> {
 				voPedido.setPizzas(pizzasPedido);
 				pedidos.add(voPedido);
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return pedidos;
 	}
-	public List<PedidoVO> BuscarPedidoPorEstado(PedidoVO vo) {
+	public List<PedidoVO> BuscarPedidoPorEstado(PedidoVO vo) throws SQLException {
 		conn = getConnection();
 		String sql = "select * from pedidos, clientes where pedidos.estado = ?";
 		PreparedStatement ptst;
 		ResultSet rs;
 		List<PedidoVO> pedidos = new ArrayList<PedidoVO>();
 		ClienteVO cliente = new ClienteVO();
-		try {
 			ptst = conn.prepareStatement(sql);
 			ptst.setString(1,"%" + vo.getEstado().toString() + "%");
 			rs = ptst.executeQuery();
@@ -220,10 +194,6 @@ public class PedidoDAO extends BaseDAO implements BaseInterDAO<PedidoVO> {
 				voPedido.setPizzas(pizzasPedido);
 				pedidos.add(voPedido);
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return pedidos;
 	}
 }
