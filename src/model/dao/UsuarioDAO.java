@@ -58,4 +58,22 @@ public class UsuarioDAO extends BaseDAO implements BaseInterDAO<UsuarioVO> {
 			ptst.setLong(3, vo.getId());
 			ptst.executeUpdate();
 	}
+	
+	public UsuarioVO buscarPorLogin(UsuarioVO voLogin) throws SQLException {
+		conn = getConnection();
+		String sql = "select * from usuarios where usuario = ?";
+		PreparedStatement st;
+		ResultSet rs;
+		UsuarioVO usuario = null; 
+			st = conn.prepareStatement(sql);
+			st.setString(1, voLogin.getUsuario());
+			rs = st.executeQuery();
+			if(rs.next()) {
+				usuario = new UsuarioVO();
+				usuario.setId(rs.getLong("id"));
+				usuario.setUsuario(rs.getString("usuario"));
+				usuario.setSenha(rs.getString("senha"));
+			}
+		return usuario;
+	}
 }

@@ -23,6 +23,15 @@ public class UsuarioBO implements BaseInterBO <UsuarioVO> {
 		return dao.listar();
 	};
 	
-	
+	public UsuarioVO autenticar(UsuarioVO enity) throws Exception {
+	      UsuarioVO usuario = dao.buscarPorLogin(enity);
+
+	      if (usuario == null)
+	        throw new Exception("Usuario não encontrado");
+	      if (!enity.getSenha().equals(usuario.getSenha()))
+	        throw new Exception("Senha incorreta");
+
+	      return usuario;
+  	}
 	
 }
