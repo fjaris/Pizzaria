@@ -1,6 +1,7 @@
 package model.dao;
 
 import model.vo.ClienteVO;
+import model.bo.BaseInterBO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +14,11 @@ public class ClienteDAO extends BaseDAO implements BaseInterDAO<ClienteVO> {
 	
 	public void inserir(ClienteVO vo) throws SQLException {
 		conn = getConnection();
-		String sql = "insert into clientes (nome, endereï¿½o, cpf) values(?,?,?)";
+		String sql = "insert into clientes (nome, endereço, cpf) values(?,?,?)";
 		PreparedStatement ptst;
 			ptst = conn.prepareStatement(sql);
 			ptst.setString(1, vo.getNome());
-			ptst.setString(2, vo.getEndereï¿½o());
+			ptst.setString(2, vo.getEndereço());
 			ptst.setString(3, vo.getCpf());
 			ptst.execute();
 	}
@@ -43,7 +44,7 @@ public class ClienteDAO extends BaseDAO implements BaseInterDAO<ClienteVO> {
 				ClienteVO vo = new ClienteVO();
 				vo.setId(rs.getLong("id"));
 				vo.setNome(rs.getString("nome"));
-				vo.setEndereï¿½o(rs.getString("endereï¿½o"));
+				vo.setEndereço(rs.getString("endereï¿½o"));
 				vo.setCpf(rs.getString("cpf"));
 				clientes.add(vo);
 			}
@@ -56,7 +57,7 @@ public class ClienteDAO extends BaseDAO implements BaseInterDAO<ClienteVO> {
 		PreparedStatement ptst;
 			ptst = conn.prepareStatement(sql);
 			ptst.setString(1, vo.getNome());
-			ptst.setString(2, vo.getEndereï¿½o());
+			ptst.setString(2, vo.getEndereço());
 			ptst.setString(3, vo.getCpf());
 			ptst.setLong(4, vo.getId());
 			ptst.executeUpdate();
