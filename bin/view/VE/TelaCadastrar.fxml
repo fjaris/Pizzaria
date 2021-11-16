@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <ImageView fitHeight="460.0" fitWidth="969.0" layoutX="-2.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@wallpaper.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="221.0" layoutY="14.0" opacity="0.98" prefHeight="163.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-7.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo-pizzaria.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="166.0" layoutY="151.0" prefHeight="298.0" prefWidth="311.0">
+         <children>
+            <TextField id="cadastrarUsuario" fx:id="loginCadastro" layoutX="67.0" layoutY="86.0" style="-fx-background-color: #C4C4C4;">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </TextField>
+            <Button id="botaoCadastrar" layoutX="90.0" layoutY="245.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: #763333; -fx-border-radius: 0 0 0 0;" text="Cadastrar" textFill="WHITE">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Label layoutX="67.0" layoutY="69.0" prefHeight="17.0" prefWidth="41.0" text="Login" textFill="WHITE" />
+            <Label layoutX="67.0" layoutY="120.0" prefHeight="17.0" prefWidth="41.0" text="Senha" textFill="WHITE" />
+            <Label layoutX="67.0" layoutY="173.0" prefHeight="17.0" prefWidth="103.0" text="Confirmar Senha" textFill="WHITE" />
+            <PasswordField id="cadastrarSenha" fx:id="loginCadastro" layoutX="67.0" layoutY="137.0" style="-fx-background-color: #C4C4C4;">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </PasswordField>
+            <PasswordField id="confirmarSenha" fx:id="senhaConfirmarCadastro" layoutX="67.0" layoutY="190.0" style="-fx-background-color: #C4C4C4;">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </PasswordField>
+         </children>
+      </Pane>
+      <Hyperlink layoutX="14.0" layoutY="14.0" onAction="#voltarLogin" text="Voltar" textFill="WHITE" underline="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Hyperlink>
+   </children>
+</Pane>

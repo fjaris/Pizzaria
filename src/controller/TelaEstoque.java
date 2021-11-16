@@ -35,4 +35,12 @@ public class TelaEstoque {
 			  e.printStackTrace();
 		  }
 	  }
+	  
+	  public void novoEstoque(ActionEvent event) {
+		  try {
+			  Telas.novoEstoque();
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  }
+	  }
 }

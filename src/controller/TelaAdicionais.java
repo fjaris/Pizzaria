@@ -36,4 +36,12 @@ public class TelaAdicionais {
 			  e.printStackTrace();
 		  }
 	  }
+	  
+	  public void novoAdicional(ActionEvent event) {
+		  try {
+			  Telas.novoAdicional();
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  }
+	  }
 }

@@ -35,4 +35,12 @@ public class TelaPizzas {
 			  e.printStackTrace();
 		  }
 	  }
+	  
+	  public void novaPizza(ActionEvent event) {
+		  try {
+			  Telas.novaPizza();
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  }
+	  }
 }
