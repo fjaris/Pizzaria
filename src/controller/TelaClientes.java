@@ -35,4 +35,12 @@ public class TelaClientes {
 			  e.printStackTrace();
 		  }
 	  }
+	  
+	  public void novoCliente(ActionEvent event) {
+		  try {
+			  Telas.novoCliente();
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  }
+	  }
 }

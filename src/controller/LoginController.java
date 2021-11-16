@@ -29,15 +29,15 @@ public class LoginController {
 	  
 	  
 	  public void autenticar(ActionEvent event) {
-//		  System.out.println(login.getText());
-//		  System.out.println(senha.getText());
+		  System.out.println(login.getText());
+		  System.out.println(senha.getText());
 		  try {
-//			  UsuarioVO usuario = new UsuarioVO();
-//
-//			  usuario.setUsuario(this.login.getText());
-//		        usuario.setSenha(this.senha.getText());
-//
-//		        this.boUsuario.autenticar(usuario);
+			  UsuarioVO usuario = new UsuarioVO();
+
+			  usuario.setUsuario(this.login.getText());
+		        usuario.setSenha(this.senha.getText());
+
+		        this.boUsuario.autenticar(usuario);
 		        Telas.pedidos();
 		  }
 		  catch(Exception e) {
